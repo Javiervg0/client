@@ -26,12 +26,10 @@ function App() {
         }
     };
 
-    // Cargar empleados al iniciar
     useEffect(() => {
         fetchEmpleados();
     }, []);
 
-    // Manejar cambios en el formulario
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -39,16 +37,15 @@ function App() {
         });
     };
 
-    // Registrar o actualizar empleado
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             if (editEmpleado) {
-                // Actualizar empleado
+                // Actualizar
                 await Axios.put(`http://localhost:3001/empleados/${editEmpleado.id}`, formData);
                 alert("Empleado actualizado con éxito.");
             } else {
-                // Registrar nuevo empleado
+                // Registrar 
                 await Axios.post("http://localhost:3001/create", formData);
                 alert("Empleado registrado con éxito.");
             }
@@ -62,7 +59,6 @@ function App() {
         }
     };
 
-    // Abrir modal para editar
     const handleEdit = (empleado) => {
         setEditEmpleado(empleado);
         setFormData({
@@ -75,13 +71,11 @@ function App() {
         setIsModalOpen(true);
     };
 
-    // Abrir modal para ver detalles
     const handleView = (empleado) => {
         setViewEmpleado(empleado);
         setIsModalOpen(true);
     };
 
-    // Cerrar modal
     const closeModal = () => {
         setIsModalOpen(false);
         setEditEmpleado(null);
